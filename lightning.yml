@@ -1,5 +1,5 @@
-name: "3dtopia-xl-shintaro"
-description: "3DTopia-XL with NumPy compatibility fix for GLB generation"
+name: "3dtopia-xl-robot-generator"
+description: "3DTopia-XL optimized for L4 GPU with GLB export"
 
 image:
   build_context: "."
@@ -8,7 +8,7 @@ image:
 compute:
   gpu: "L4"
   memory: "24GB"
-  disk_size: "80GB"
+  disk_size: "100GB"
   cpu: "4"
 
 ports:
@@ -20,19 +20,19 @@ env:
   - "CUDA_VISIBLE_DEVICES=0"
   - "GRADIO_SERVER_NAME=0.0.0.0"
   - "GRADIO_SERVER_PORT=7860"
-  - "NUMPY_VERSION=1.26.4"  # Force NumPy 1.x
+  - "PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:256"
+  - "NUMPY_EXPERIMENTAL_ARRAY_FUNCTION=0"
 
 volumes:
   - name: "models"
     mount_path: "/workspace/pretrained"
-    size: "30GB"
+    size: "40GB"
   - name: "outputs"
     mount_path: "/workspace/outputs"
     size: "20GB"
-  - name: "inputs"
-    mount_path: "/workspace/inputs"
-    size: "5GB"
+  - name: "cache"
+    mount_path: "/workspace/.cache"
+    size: "10GB"
 
 startup_commands:
   - "/workspace/download_models.sh"
-  - "python /workspace/enhanced_robot.py --prompt 'a futuristic robot'"

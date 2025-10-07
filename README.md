@@ -188,3 +188,9 @@ This work is built on many amazing research works and open-source projects, than
 - [kiuikit](https://github.com/ashawkey/kiuikit)
 - [Trimesh](https://github.com/mikedh/trimesh)
 - [litmodel3d](https://pypi.org/project/gradio-litmodel3d/)
+
+
+
+docker build --no-cache -t 3dtopia-robot:latest .
+
+docker run --rm --gpus all -it 3dtopia-robot:latest /bin/bash

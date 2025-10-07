@@ -1,4 +1,4 @@
-name: "3dtopia-xl-robot-generator"
+name: "3dtopia-xl-robot-gen"
 description: "3DTopia-XL optimized for L4 GPU with GLB export"
 
 image:
@@ -17,10 +17,9 @@ ports:
 env:
   - "TORCH_CUDA_ARCH_LIST=7.5 8.0 8.6+PTX"
   - "FORCE_CUDA=1"
-  - "PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:256"
-  - "CUDA_LAUNCH_BLOCKING=0"
-  - "GRADIO_SERVER_NAME=0.0.0.0"
+  - "GRADIO_SERVER_NAME=0.0.0.0" 
   - "GRADIO_SERVER_PORT=7860"
+  - "PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:256"
 
 volumes:
   - name: "models"
@@ -28,10 +27,8 @@ volumes:
     size: "30GB"
   - name: "outputs"
     mount_path: "/workspace/outputs"
-    size: "25GB"
-  - name: "cache"
-    mount_path: "/workspace/cache"
-    size: "10GB"
+    size: "50GB"
 
 startup_commands:
-  - "/workspace/download_models.sh"
+  - "chmod +x /workspace/*.sh"
+  - "/workspace/start_app.sh"

@@ -1,0 +1,45 @@
+# Core dependencies (NumPy 1.x for compatibility)
+numpy<2.0.0
+scipy
+matplotlib
+Pillow>=8.0.0,<10.0.0
+
+# PyTorch ecosystem (installed separately)
+einops
+timm
+
+# 3DTopia specific
+omegaconf
+opencv-python-headless
+trimesh==4.2.0
+pygltflib
+pymeshlab==0.2
+PyMCubes
+xatlas
+scikit-learn
+open_clip_torch
+rembg[gpu]
+tqdm
+imageio
+imageio-ffmpeg
+jaxtyping==0.2.31
+
+# Gradio and web interface
+gradio>=4.0.0
+gradio-litmodel3d==0.0.1
+
+# Additional utilities
+huggingface_hub
+accelerate
+safetensors
+requests
+pyyaml
+typing-extensions
+
+# GLB/3D format support
+meshio
+gltflib
+pymeshfix
+
+# Lightning.ai specific
+lightning

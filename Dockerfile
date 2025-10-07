@@ -3,12 +3,13 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 ENV CUDA_VISIBLE_DEVICES=all
-ENV PYTHONPATH=/app:$PYTHONPATH
+ENV PYTHONPATH=/app
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies including those needed for pymeshlab
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
@@ -26,6 +27,9 @@ RUN apt-get update && apt-get install -y \
     libgoogle-perftools4 \
     libtcmalloc-minimal4 \
     ffmpeg \
+    libglfw3-dev \
+    libgles2-mesa-dev \
+    libegl1-mesa-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements files

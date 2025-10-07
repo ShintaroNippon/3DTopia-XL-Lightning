@@ -17,21 +17,20 @@ ports:
 env:
   - "TORCH_CUDA_ARCH_LIST=7.5 8.0 8.6+PTX"
   - "FORCE_CUDA=1"
-  - "CUDA_VISIBLE_DEVICES=0"
+  - "PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:256"
+  - "CUDA_LAUNCH_BLOCKING=0"
   - "GRADIO_SERVER_NAME=0.0.0.0"
   - "GRADIO_SERVER_PORT=7860"
-  - "PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:256"
-  - "NUMPY_EXPERIMENTAL_ARRAY_FUNCTION=0"
 
 volumes:
   - name: "models"
     mount_path: "/workspace/pretrained"
-    size: "40GB"
+    size: "30GB"
   - name: "outputs"
     mount_path: "/workspace/outputs"
-    size: "20GB"
+    size: "25GB"
   - name: "cache"
-    mount_path: "/workspace/.cache"
+    mount_path: "/workspace/cache"
     size: "10GB"
 
 startup_commands:
